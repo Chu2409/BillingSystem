@@ -1,7 +1,7 @@
 package dto;
 
 public class Product {
-    
+
     private String productId;
     private String name;
     private double price;
@@ -69,6 +69,7 @@ public class Product {
     @Override
     public String toString() {
         String ivaAux = iva ? "aplica" : "no aplica";
-        return "Id: " + productId + " || Nombre: " + name + " || Precio: " + price + " || Unidad de medida: " + measureUnit + " || Iva: " + ivaAux + " || Cantidad: " + amount;
+        return "Id: " + productId + " || Nombre: " + name + " || Precio: " + price + " || Unidad de medida: "
+                + measureUnit + " || Iva: " + ivaAux + " || Cantidad: " + amount;
     }
 }

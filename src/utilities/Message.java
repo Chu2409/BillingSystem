@@ -24,7 +24,8 @@ public class Message {
     }
 
     public static void printBillHeader(dto.Customer c) {
-        System.out.println("\n---------------------------------------------------------FACTURA----------------------------------------------------------");
+        System.out.println(
+                "\n---------------------------------------------------------FACTURA----------------------------------------------------------");
         System.out.println(c.getName() + " " + c.getSurname() + "\n" + c.getPhoneNumber() + "\n" + c.getEmail());
     }
 
@@ -32,20 +33,24 @@ public class Message {
         System.out.println("Producto/Servicio\t\t\t\tPrecio\t\tCantidad\t\tSubtotal\t\tIVA\t\tTotal");
     }
 
-    public static void printBillProducts(String name, double price, int amount, double subtotal, boolean iva, double total) {
+    public static void printBillProducts(String name, double price, int amount, double subtotal, boolean iva,
+            double total) {
         String ivaP = iva ? "12%" : "0%";
-        System.out.println(name + "\t\t\t\t\t\t" + price + "\t\t" + amount + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
+        System.out.println(name + "\t\t\t\t\t\t" + price + "\t\t" + amount + "\t\t\t" + subtotal + "\t\t\t" + ivaP
+                + "\t\t" + total);
     }
 
     public static void printBillServices(String name, double price, double subtotal, boolean iva, double total) {
         String ivaP = iva ? "12%" : "0%";
-        System.out.println(name + "\t\t\t\t" + price + "\t\t" + "----" + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
+        System.out.println(
+                name + "\t\t\t\t" + price + "\t\t" + "----" + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
     }
 
     public static void printFinalBill(double subtotal, double total) {
         System.out.println("\nSubtotal: " + subtotal);
         System.out.println("Total: " + total);
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------");
+        System.out.println(
+                "--------------------------------------------------------------------------------------------------------------------------");
     }
 
     public static enum Product {
@@ -131,8 +136,10 @@ public class Message {
 
     public static enum Menu {
         WELCOME("************BIENVENIDO AL SISTEMA DE FACTURACION************"),
-        MAIN_OPTIONS("\n********************\nOpciones del sistema\n1: Administrador\n2: Cliente\n0: Salir\n********************"),
-        ADMIN_OPTIONS("\n**************************\nOpciones de administracion\n1: Cliente\n2: Producto\n3: Servicio\n0: Salir\n**************************"),
+        MAIN_OPTIONS(
+                "\n********************\nOpciones del sistema\n1: Administrador\n2: Cliente\n0: Salir\n********************"),
+        ADMIN_OPTIONS(
+                "\n**************************\nOpciones de administracion\n1: Cliente\n2: Producto\n3: Servicio\n0: Salir\n**************************"),
         ADMIN_CUSTOMER_OPTIONS(
                 "\n**************************************\nOpciones de administracion de clientes\n1: Ingresar cliente\n2: Modificar cliente\n3: Eliminar cliente\n4: Revisar clientes\n0: Salir\n**************************************"),
         ADMIN_CUSTOMER_UPDATE_OPTIONS(
@@ -145,7 +152,9 @@ public class Message {
                 "\n***************************************\nOpciones de administracion de servicios\n1: Ingresar servicio\n2: Modificar servicio\n3: Eliminar servicio\n4: Revisar servicios\n0: Salir\n***************************************"),
         ADMIN_SERVICE_UPDATE_OPTIONS(
                 "1: Id\n2: Nombre\n3: Precio\n4: Iva\n0: Salir"),
-        CUSTOMER_OPTIONS("\n********************\nOpciones del cliente\n1: Comprar producto\n2: Adquirir servicio\n3: Facturar\n0: Salir\n********************"),;
+        CUSTOMER_OPTIONS(
+                "\n********************\nOpciones del cliente\n1: Comprar producto\n2: Adquirir servicio\n3: Facturar\n0: Salir\n********************"),;
+
         private String ms;
 
         Menu(String ms) {

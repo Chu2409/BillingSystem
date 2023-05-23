@@ -5,7 +5,7 @@ import dto.*;
 import java.util.*;
 
 public class Menu {
-    
+
     public static FacturationSystemManager sm = initializateData();
 
     public static void mainMenu() {
@@ -209,7 +209,7 @@ public class Menu {
     public static void customerMenu() {
         int opt;
         Customer c = sm.getCustomerById();
-        
+
         if (c != null) {
             BillManager bm = new BillManager(new Bill(c, sm));
             List<Product> productsAux = copyProducts(sm.getSystem().getProducts());
@@ -237,7 +237,7 @@ public class Menu {
 
             if (!bought) {
                 sm.getSystem().setProducts(productsAux);
-            } 
+            }
         }
     }
 
@@ -270,7 +270,7 @@ public class Menu {
     public static void printMainMenu() {
         Message.print(Message.Menu.MAIN_OPTIONS.toString());
     }
-    
+
     public static void welcomeSystem() {
         Message.print(Message.Menu.WELCOME.toString());
     }
@@ -310,7 +310,8 @@ public class Menu {
     public static List<Product> copyProducts(List<Product> products) {
         List<Product> newP = new LinkedList<>();
         for (Product p : products) {
-            Product auxP = new Product(p.getProductId(), p.getName(), p.getPrice(), p.getMeasureUnit(), p.isIva(), p.getAmount());
+            Product auxP = new Product(p.getProductId(), p.getName(), p.getPrice(), p.getMeasureUnit(), p.isIva(),
+                    p.getAmount());
             newP.add(auxP);
         }
         return newP;

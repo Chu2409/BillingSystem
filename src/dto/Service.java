@@ -1,7 +1,7 @@
 package dto;
 
 public class Service {
-    
+
     private String serviceId;
     private String name;
     private double price;

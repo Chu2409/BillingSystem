@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Bill {
-    
+
     private Customer customer;
     private FacturationSystemManager sm;
     private List<Product> products;

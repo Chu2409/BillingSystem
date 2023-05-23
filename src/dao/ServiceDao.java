@@ -1,7 +1,6 @@
 package dao;
 
 import dto.Service;
-import java.util.List;
 
 public interface ServiceDao {
     public boolean insert(Service service);

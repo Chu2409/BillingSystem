@@ -101,8 +101,9 @@ public class FacturationSystemManager {
         try {
             Product p = getProductByIndex(index);
             int amount = Console.askProductAmount();
-            Product aux = new Product(p.getProductId(), p.getName(), p.getPrice(), p.getMeasureUnit(), p.isIva(), p.getAmount());
-            
+            Product aux = new Product(p.getProductId(), p.getName(), p.getPrice(), p.getMeasureUnit(), p.isIva(),
+                    p.getAmount());
+
             if (p.getAmount() > amount) {
                 p.setAmount(p.getAmount() - amount);
                 aux.setAmount(amount);
@@ -116,7 +117,7 @@ public class FacturationSystemManager {
             return null;
         }
     }
-    
+
     public Product getProductById() {
         try {
             String id = Console.askProductId();
@@ -204,7 +205,7 @@ public class FacturationSystemManager {
             return null;
         }
     }
-    
+
     public Service getServiceById() {
         try {
             String id = Console.askServiceId();
@@ -229,7 +230,7 @@ public class FacturationSystemManager {
             return null;
         }
     }
-    
+
     public boolean deleteService() {
         try {
             var services = this.system.getServices();

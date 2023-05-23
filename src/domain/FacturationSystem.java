@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class FacturationSystem {
-    
+
     private List<Customer> customers;
     private List<Product> products;
     private List<Service> services;
@@ -20,7 +20,6 @@ public class FacturationSystem {
         this.products = products;
     }
 
-    
     public List<Customer> getCustomers() {
         return customers;
     }

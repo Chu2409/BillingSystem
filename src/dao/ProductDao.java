@@ -1,7 +1,6 @@
 package dao;
 
 import dto.Product;
-import java.util.List;
 
 public interface ProductDao {
     public boolean insert(Product product);

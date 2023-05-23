@@ -8,8 +8,7 @@ import utilities.Message;
 public class BillManager {
 
     private Bill bill;
-    
-    
+
     public BillManager(Bill bill) {
         this.bill = bill;
     }
@@ -74,12 +73,14 @@ public class BillManager {
         if (bill.getProducts() != null) {
             for (Product p : bill.getProducts()) {
                 double subtotal = calculateProductSubtotal(p);
-                Message.printBillProducts(p.getName(), p.getPrice(), p.getAmount(), subtotal, p.isIva(), calculateProductTotal(subtotal, p.isIva()));
+                Message.printBillProducts(p.getName(), p.getPrice(), p.getAmount(), subtotal, p.isIva(),
+                        calculateProductTotal(subtotal, p.isIva()));
             }
         }
         if (bill.getServices() != null) {
             for (Service s : bill.getServices()) {
-                Message.printBillServices(s.getName(), s.getPrice(), s.getPrice(), s.isIva(), calculateServiceTotal(s.getPrice(), s.isIva()));
+                Message.printBillServices(s.getName(), s.getPrice(), s.getPrice(), s.isIva(),
+                        calculateServiceTotal(s.getPrice(), s.isIva()));
             }
         }
         Message.printFinalBill(bill.getSubtotal(), bill.getTotal());

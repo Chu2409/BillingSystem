@@ -4,7 +4,6 @@ import controls.Control;
 import dto.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Console {
@@ -205,7 +204,7 @@ public class Console {
             return askProductIva();
         }
     }
-    
+
     public static int askProductAmount() {
         try {
             Message.enter(Message.Product.PRODUCT_AMOUNT.toString());
@@ -227,7 +226,8 @@ public class Console {
         String newProductMeasureUnit = askProductMeasureUnit();
         boolean newProductIva = askProductIva();
         int newAmount = askProductAmount();
-        return new Product(newProductId, newProductName, newProductPrice, newProductMeasureUnit, newProductIva, newAmount);
+        return new Product(newProductId, newProductName, newProductPrice, newProductMeasureUnit, newProductIva,
+                newAmount);
     }
 
     public static String askServiceId() {
@@ -308,7 +308,7 @@ public class Console {
             return askOption(initialOpt, finalOpt);
         }
     }
-    
+
     public static Double formatNumber(Double number) {
         BigDecimal bd = new BigDecimal(number);
         return bd.setScale(3, RoundingMode.HALF_EVEN).doubleValue();
