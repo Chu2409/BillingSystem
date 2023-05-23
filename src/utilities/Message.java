@@ -18,6 +18,10 @@ public class Message {
     public static void enterOption() {
         System.out.print("Ingrese la opcion: ");
     }
+    
+    public static void leaveOption() {
+        System.out.println("0: Salir");
+    }
 
     public static enum Product {
         PRODUCT_ENTERED("El producto ha sido ingresado correctamente"),

@@ -97,6 +97,26 @@ public class FacturationSystemManager {
         }
     }
 
+    public Product buyProduct(int index) {
+        try {
+            Product p = getProductByIndex(index);
+            int amount = Console.askProductAmount();
+            Product aux = new Product(p.getProductId(), p.getName(), p.getPrice(), p.getMeasureUnit(), p.isIva(), p.getAmount());
+            
+            if (p.getAmount() > amount) {
+                p.setAmount(p.getAmount() - amount);
+                aux.setAmount(amount);
+                return aux;
+            }
+            aux.setAmount(p.getAmount());
+            system.getProducts().remove(index);
+            return aux;
+        } catch (Exception e) {
+            Message.print(Message.Product.PRODUCT_ERROR.toString());
+            return null;
+        }
+    }
+    
     public Product getProductById() {
         try {
             String id = Console.askProductId();
@@ -107,6 +127,15 @@ public class FacturationSystemManager {
             }
             Message.print(Message.Product.PRODUCT_NOTFOUND.toString());
             return null;
+        } catch (Exception e) {
+            Message.print(Message.Product.PRODUCT_ERROR.toString());
+            return null;
+        }
+    }
+
+    public Product getProductByIndex(int index) {
+        try {
+            return this.getSystem().getProducts().get(index);
         } catch (Exception e) {
             Message.print(Message.Product.PRODUCT_ERROR.toString());
             return null;
@@ -167,6 +196,15 @@ public class FacturationSystemManager {
         }
     }
 
+    public Service buyService(int index) {
+        try {
+            return getServiceByIndex(index);
+        } catch (Exception e) {
+            Message.print(Message.Product.PRODUCT_ERROR.toString());
+            return null;
+        }
+    }
+    
     public Service getServiceById() {
         try {
             String id = Console.askServiceId();
@@ -183,6 +221,15 @@ public class FacturationSystemManager {
         }
     }
 
+    public Service getServiceByIndex(int index) {
+        try {
+            return this.getSystem().getServices().get(index);
+        } catch (Exception e) {
+            Message.print(Message.Service.SERVICE_ERROR.toString());
+            return null;
+        }
+    }
+    
     public boolean deleteService() {
         try {
             var services = this.system.getServices();

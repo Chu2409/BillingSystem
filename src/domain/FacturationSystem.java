@@ -15,6 +15,11 @@ public class FacturationSystem {
         this.services = new LinkedList<>();
     }
 
+    public FacturationSystem(List<Product> products) {
+        this.products = products;
+    }
+
+    
     public List<Customer> getCustomers() {
         return customers;
     }

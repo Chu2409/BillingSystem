@@ -2,6 +2,7 @@ package utilities;
 
 import domain.*;
 import dto.*;
+import java.util.List;
 
 public class Menu {
 
@@ -122,7 +123,7 @@ public class Menu {
             }
         } while (opt != 0);
     }
-    
+
     public static void adminProductUpdateMenu() {
         int opt;
         Product p = sm.getProductById();
@@ -177,7 +178,7 @@ public class Menu {
             }
         } while (opt != 0);
     }
-    
+
     public static void adminServiceUpdateMenu() {
         int opt;
         Service s = sm.getServiceById();
@@ -206,42 +207,62 @@ public class Menu {
 
     public static void customerMenu() {
         int opt;
+        BillManager bm = new BillManager(new Bill(sm.getCustomerById(), sm));
+        FacturationSystem sAux = new FacturationSystem(sm.getSystem().getProducts());
+        boolean bought = false;
         do {
             printCustomerMenu();
             opt = Console.askOption(0, 3);
 
             switch (opt) {
                 case 1:
-                    customerProductMenu();
+                    customerProductMenu(bm);
                     break;
                 case 2:
-                    //customerServiceMenu();
+                    customerServiceMenu(bm);
                     break;
                 case 3:
-                    //customerBillMenu();
+                    customerBillMenu(bm);
+                    bought = true;
                     break;
+                case 0:
+
             }
+        } while (opt != 0);
+
+        if (!bought) {
+            sm.getSystem().setProducts(sAux.getProducts());
+        }
+    }
+
+    public static void customerProductMenu(BillManager bm) {
+        int opt;
+        do {
+            sm.selectProducts();
+            Message.leaveOption();
+            opt = Console.askOption(0, sm.getSystem().getProducts().size());
+            if (opt != 0) {
+                bm.addProduct(opt - 1);
+            }
+
         } while (opt != 0);
     }
 
-    public static void customerProductMenu() {
+    public static void customerServiceMenu(BillManager bm) {
         int opt;
         do {
-            printCustomerMenu();
-            opt = Console.askOption(0, 3);
-
-            switch (opt) {
-                case 1:
-                    adminCustomerMenu();
-                    break;
-                case 2:
-                    adminProductMenu();
-                    break;
-                case 3:
-                    adminServiceMenu();
-                    break;
+            sm.selectServices();
+            Message.leaveOption();
+            opt = Console.askOption(0, sm.getSystem().getServices().size());
+            if (opt != 0) {
+                bm.addService(opt - 1);
             }
+
         } while (opt != 0);
+    }
+
+    public static void customerBillMenu(BillManager bm) {
+        System.out.println("Se cobro");
     }
 
     public static void printMainMenu() {
@@ -265,7 +286,7 @@ public class Menu {
     public static void printAdminProductMenu() {
         Message.print(Message.Menu.ADMIN_PRODUCT_OPTIONS.toString());
     }
-    
+
     public static void printAdminProductUpdateMenu() {
         Message.print(Message.Menu.ADMIN_PRODUCT_UPDATE_OPTIONS.toString());
     }
@@ -273,7 +294,7 @@ public class Menu {
     public static void printAdminServiceMenu() {
         Message.print(Message.Menu.ADMIN_SERVICE_OPTIONS.toString());
     }
-    
+
     public static void printAdminServiceUpdateMenu() {
         Message.print(Message.Menu.ADMIN_SERVICE_UPDATE_OPTIONS.toString());
     }
@@ -301,7 +322,7 @@ public class Menu {
                 "cyberinteractivo@hotmail.es");
         Customer c3 = new Customer("0703224345", 1, "Doris Giovanna", "Ordoñez Marquez", "Ambato", "0994459401",
                 "doris28@hotmail.es");
-        Customer c4 = new Customer("1414789875", 1, "Carol Anahi", "Chico Hurtado", "Ambato", "0998551942",
+        Customer c4 = new Customer("1850272582", 1, "Carol Anahi", "Chico Hurtado", "Ambato", "0998551942",
                 "cchico259@gmail.com");
 
         FacturationSystem s = new FacturationSystem();
