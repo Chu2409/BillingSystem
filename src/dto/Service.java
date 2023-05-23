@@ -1,6 +1,7 @@
 package dto;
 
 public class Service {
+    
     private String serviceId;
     private String name;
     private double price;
@@ -47,6 +48,7 @@ public class Service {
 
     @Override
     public String toString() {
-        return "Service{" + "serviceId=" + serviceId + ", name=" + name + ", price=" + price + ", iva=" + iva + '}';
+        String ivaAux = iva ? "aplica" : "no aplica";
+        return "Id: " + serviceId + " || Nombre: " + name + " || Precio: " + price + " || IVA: " + ivaAux;
     }
 }

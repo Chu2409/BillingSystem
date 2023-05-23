@@ -276,5 +276,4 @@ public class FacturationSystemManager {
     public void setSystem(FacturationSystem system) {
         this.system = system;
     }
-
 }

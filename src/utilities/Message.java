@@ -29,17 +29,17 @@ public class Message {
     }
 
     public static void printBillData() {
-        System.out.println("Producto/Servicio\t\t\tPrecio\t\tCantidad\t\tSubtotal\t\tIVA\t\tTotal");
+        System.out.println("Producto/Servicio\t\t\t\tPrecio\t\tCantidad\t\tSubtotal\t\tIVA\t\tTotal");
     }
 
     public static void printBillProducts(String name, double price, int amount, double subtotal, boolean iva, double total) {
         String ivaP = iva ? "12%" : "0%";
-        System.out.println(name + "\t\t\t\t\t" + price + "\t\t" + amount + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
+        System.out.println(name + "\t\t\t\t\t\t" + price + "\t\t" + amount + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
     }
 
     public static void printBillServices(String name, double price, double subtotal, boolean iva, double total) {
         String ivaP = iva ? "12%" : "0%";
-        System.out.println(name + "\t\t\t\t\t" + price + "\t\t" + "----" + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
+        System.out.println(name + "\t\t\t\t" + price + "\t\t" + "----" + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
     }
 
     public static void printFinalBill(double subtotal, double total) {
@@ -134,19 +134,18 @@ public class Message {
         MAIN_OPTIONS("\n********************\nOpciones del sistema\n1: Administrador\n2: Cliente\n0: Salir\n********************"),
         ADMIN_OPTIONS("\n**************************\nOpciones de administracion\n1: Cliente\n2: Producto\n3: Servicio\n0: Salir\n**************************"),
         ADMIN_CUSTOMER_OPTIONS(
-                "1: Ingresar cliente\n2: Modificar cliente\n3: Eliminar cliente\n4: Revisar clientes\n0: Salir"),
+                "\n**************************************\nOpciones de administracion de clientes\n1: Ingresar cliente\n2: Modificar cliente\n3: Eliminar cliente\n4: Revisar clientes\n0: Salir\n**************************************"),
         ADMIN_CUSTOMER_UPDATE_OPTIONS(
-                "1: Identifacion - Tipo de identificacion\n2: Nombre\n3: Apellido\n4: Direccion\n5: Numero de telefono\n6: Email\n0: Salir"),
+                "\n1: Identifacion - Tipo de identificacion\n2: Nombre\n3: Apellido\n4: Direccion\n5: Numero de telefono\n6: Email\n0: Salir\n***************************************"),
         ADMIN_PRODUCT_OPTIONS(
-                "1: Ingresar producto\n2: Modificar producto\n3: Eliminar producto\n4: Revisar productos\n0: Salir"),
+                "\n***************************************\nOpciones de administracion de productos\n1: Ingresar producto\n2: Modificar producto\n3: Eliminar producto\n4: Revisar productos\n0: Salir\n***************************************"),
         ADMIN_PRODUCT_UPDATE_OPTIONS(
                 "1: Id\n2: Nombre\n3: Precio\n4: Unidad de medida\n5: Iva\n6: Cantidad\n0: Salir"),
         ADMIN_SERVICE_OPTIONS(
-                "1: Ingresar servicio\n2: Modificar servicio\n3: Eliminar servicio\n4: Revisar servicios\n0: Salir"),
+                "\n***************************************\nOpciones de administracion de servicios\n1: Ingresar servicio\n2: Modificar servicio\n3: Eliminar servicio\n4: Revisar servicios\n0: Salir\n***************************************"),
         ADMIN_SERVICE_UPDATE_OPTIONS(
                 "1: Id\n2: Nombre\n3: Precio\n4: Iva\n0: Salir"),
-        CUSTOMER_OPTIONS("1: Producto\n2: Servicio\n3: Facturacion\n0: Salir"),;
-
+        CUSTOMER_OPTIONS("\n********************\nOpciones del cliente\n1: Comprar producto\n2: Adquirir servicio\n3: Facturar\n0: Salir\n********************"),;
         private String ms;
 
         Menu(String ms) {
@@ -158,5 +157,4 @@ public class Message {
             return ms;
         }
     }
-
 }

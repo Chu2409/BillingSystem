@@ -5,7 +5,7 @@ import dto.*;
 import java.util.*;
 
 public class Menu {
-
+    
     public static FacturationSystemManager sm = initializateData();
 
     public static void mainMenu() {
@@ -324,7 +324,7 @@ public class Menu {
         Product p5 = new Product("5555", "Agua", 0.55, "lt", false, 20);
         Product p6 = new Product("6666", "Papel", 0.43, "u", false, 18);
 
-        Service s1 = new Service("1122", "Arreglar aire", 20, true);
+        Service s1 = new Service("1122", "Verificar aires", 20, true);
         Service s2 = new Service("1133", "Arreglar tuberias", 15, true);
         Service s3 = new Service("1144", "Arreglar impresora", 10, true);
         Service s4 = new Service("1155", "Pintar casa", 100, true);
@@ -358,5 +358,4 @@ public class Menu {
 
         return new FacturationSystemManager(s);
     }
-
 }

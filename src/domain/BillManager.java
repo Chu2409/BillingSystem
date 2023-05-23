@@ -2,12 +2,14 @@ package domain;
 
 import dto.Product;
 import dto.Service;
+import utilities.Console;
 import utilities.Message;
 
 public class BillManager {
 
     private Bill bill;
-
+    
+    
     public BillManager(Bill bill) {
         this.bill = bill;
     }
@@ -39,7 +41,7 @@ public class BillManager {
     }
 
     public double calculateProductSubtotal(Product p) {
-        double subtotal = p.getPrice() * p.getAmount();
+        double subtotal = Console.formatNumber(p.getPrice() * p.getAmount());
         bill.setSubtotal(bill.getSubtotal() + subtotal);
         return subtotal;
     }
@@ -47,20 +49,20 @@ public class BillManager {
     public double calculateProductTotal(double subtotal, boolean iva) {
         double total = 0;
         if (iva) {
-            total = subtotal + (subtotal * 0.12);
+            total = Console.formatNumber(subtotal + (subtotal * 0.12));
         } else {
-            total = subtotal;
+            total = Console.formatNumber(subtotal);
         }
-        bill.setTotal(bill.getTotal() + total);
+        bill.setTotal(Console.formatNumber(bill.getTotal() + total));
         return total;
     }
 
     public double calculateServiceTotal(double subtotal, boolean iva) {
         double total = 0;
         if (iva) {
-            total = subtotal + (subtotal * 0.12);
+            total = Console.formatNumber(subtotal + (subtotal * 0.12));
         } else {
-            total = subtotal;
+            total = Console.formatNumber(subtotal);
         }
         bill.setTotal(bill.getTotal() + total);
         return total;
@@ -90,5 +92,4 @@ public class BillManager {
     public void setBill(Bill bill) {
         this.bill = bill;
     }
-
 }

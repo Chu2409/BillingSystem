@@ -1,6 +1,7 @@
 package dto;
 
 public class Customer {
+    
     private String customerId;
     private int idType;
     private String name;
@@ -78,8 +79,8 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" + "customerId=" + customerId + ", idType=" + idType + ", name=" + name + ", surname="
-                + surname + ", address=" + address + ", phoneNumber=" + phoneNumber + ", email=" + email + '}';
+        String idTypeAux = idType == 1 ? "Cedula" : "RUC";
+        return "Id: " + customerId + " || Tipo de id: " + idTypeAux + " || Nombre: " + name + " || Apellido: " + surname + " || Direccion: " + address + " || Numero de telefono: " + phoneNumber + " || Email: " + email;
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class FacturationSystem {
+    
     private List<Customer> customers;
     private List<Product> products;
     private List<Service> services;
@@ -43,5 +44,4 @@ public class FacturationSystem {
     public void setServices(List<Service> services) {
         this.services = services;
     }
-
 }

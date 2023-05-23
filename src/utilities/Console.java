@@ -2,6 +2,9 @@ package utilities;
 
 import controls.Control;
 import dto.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Console {
@@ -305,5 +308,9 @@ public class Console {
             return askOption(initialOpt, finalOpt);
         }
     }
-
+    
+    public static Double formatNumber(Double number) {
+        BigDecimal bd = new BigDecimal(number);
+        return bd.setScale(3, RoundingMode.HALF_EVEN).doubleValue();
+    }
 }
