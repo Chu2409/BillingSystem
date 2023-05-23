@@ -2,7 +2,7 @@ package utilities;
 
 import domain.*;
 import dto.*;
-import java.util.List;
+import java.util.*;
 
 public class Menu {
 
@@ -10,6 +10,7 @@ public class Menu {
 
     public static void mainMenu() {
         int opt;
+        welcomeSystem();
         do {
             printMainMenu();
             opt = Console.askOption(0, 2);
@@ -207,31 +208,36 @@ public class Menu {
 
     public static void customerMenu() {
         int opt;
-        BillManager bm = new BillManager(new Bill(sm.getCustomerById(), sm));
-        FacturationSystem sAux = new FacturationSystem(sm.getSystem().getProducts());
-        boolean bought = false;
-        do {
-            printCustomerMenu();
-            opt = Console.askOption(0, 3);
+        Customer c = sm.getCustomerById();
+        
+        if (c != null) {
+            BillManager bm = new BillManager(new Bill(c, sm));
+            List<Product> productsAux = copyProducts(sm.getSystem().getProducts());
+            boolean bought = false;
+            do {
+                printCustomerMenu();
+                opt = Console.askOption(0, 3);
 
-            switch (opt) {
-                case 1:
-                    customerProductMenu(bm);
+                switch (opt) {
+                    case 1:
+                        customerProductMenu(bm);
+                        break;
+                    case 2:
+                        customerServiceMenu(bm);
+                        break;
+                    case 3:
+                        customerBillMenu(bm);
+                        bought = true;
+                        break;
+                }
+                if (opt == 3) {
                     break;
-                case 2:
-                    customerServiceMenu(bm);
-                    break;
-                case 3:
-                    customerBillMenu(bm);
-                    bought = true;
-                    break;
-                case 0:
+                }
+            } while (opt != 0);
 
-            }
-        } while (opt != 0);
-
-        if (!bought) {
-            sm.getSystem().setProducts(sAux.getProducts());
+            if (!bought) {
+                sm.getSystem().setProducts(productsAux);
+            } 
         }
     }
 
@@ -249,26 +255,24 @@ public class Menu {
     }
 
     public static void customerServiceMenu(BillManager bm) {
-        int opt;
-        do {
-            sm.selectServices();
-            Message.leaveOption();
-            opt = Console.askOption(0, sm.getSystem().getServices().size());
-            if (opt != 0) {
-                bm.addService(opt - 1);
-            }
-
-        } while (opt != 0);
+        sm.selectServices();
+        Message.leaveOption();
+        int opt = Console.askOption(0, sm.getSystem().getServices().size());
+        if (opt != 0) {
+            bm.addService(opt - 1);
+        }
     }
 
     public static void customerBillMenu(BillManager bm) {
-        System.out.println("Se cobro");
+        bm.printBill();
     }
 
     public static void printMainMenu() {
-        Message.print(Message.Menu.WELCOME.toString());
         Message.print(Message.Menu.MAIN_OPTIONS.toString());
-
+    }
+    
+    public static void welcomeSystem() {
+        Message.print(Message.Menu.WELCOME.toString());
     }
 
     public static void printAdminMenu() {
@@ -301,6 +305,15 @@ public class Menu {
 
     public static void printCustomerMenu() {
         Message.print(Message.Menu.CUSTOMER_OPTIONS.toString());
+    }
+
+    public static List<Product> copyProducts(List<Product> products) {
+        List<Product> newP = new LinkedList<>();
+        for (Product p : products) {
+            Product auxP = new Product(p.getProductId(), p.getName(), p.getPrice(), p.getMeasureUnit(), p.isIva(), p.getAmount());
+            newP.add(auxP);
+        }
+        return newP;
     }
 
     public static FacturationSystemManager initializateData() {

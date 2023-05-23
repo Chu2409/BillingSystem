@@ -18,9 +18,34 @@ public class Message {
     public static void enterOption() {
         System.out.print("Ingrese la opcion: ");
     }
-    
+
     public static void leaveOption() {
         System.out.println("0: Salir");
+    }
+
+    public static void printBillHeader(dto.Customer c) {
+        System.out.println("\n---------------------------------------------------------FACTURA----------------------------------------------------------");
+        System.out.println(c.getName() + " " + c.getSurname() + "\n" + c.getPhoneNumber() + "\n" + c.getEmail());
+    }
+
+    public static void printBillData() {
+        System.out.println("Producto/Servicio\t\t\tPrecio\t\tCantidad\t\tSubtotal\t\tIVA\t\tTotal");
+    }
+
+    public static void printBillProducts(String name, double price, int amount, double subtotal, boolean iva, double total) {
+        String ivaP = iva ? "12%" : "0%";
+        System.out.println(name + "\t\t\t\t\t" + price + "\t\t" + amount + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
+    }
+
+    public static void printBillServices(String name, double price, double subtotal, boolean iva, double total) {
+        String ivaP = iva ? "12%" : "0%";
+        System.out.println(name + "\t\t\t\t\t" + price + "\t\t" + "----" + "\t\t\t" + subtotal + "\t\t\t" + ivaP + "\t\t" + total);
+    }
+
+    public static void printFinalBill(double subtotal, double total) {
+        System.out.println("\nSubtotal: " + subtotal);
+        System.out.println("Total: " + total);
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------");
     }
 
     public static enum Product {
@@ -36,7 +61,7 @@ public class Message {
         PRODUCT_MEASURE_UNIT("unidad de medida del producto"),
         PRODUCT_IVA("si aplica iva\n1: Si\n2: No\n"),
         PRODUCT_AMOUNT("cantidad del producto"),
-        ;
+        PRODUCT_ADDED("El producto ha sido añadido al carrito"),;
 
         private String ms;
 
@@ -62,7 +87,7 @@ public class Message {
         SERVICE_NAME("nombre del servicio"),
         SERVICE_PRICE("precio del servicio"),
         SERVICE_IVA("si aplica iva\n1: Si\n2: No\n"),
-        ;
+        SERVICE_ADDED("El servicio ha sido añadido"),;
 
         private String ms;
 
@@ -90,8 +115,7 @@ public class Message {
         CUSTOMER_SURNAME("apellidos del cliente"),
         CUSTOMER_ADDRESS("direccion del cliente"),
         CUSTOMER_PHONE_NUMBER("numero de telefono del cliente"),
-        CUSTOMER_EMAIL("email del cliente"),
-        ;
+        CUSTOMER_EMAIL("email del cliente"),;
 
         private String ms;
 
@@ -106,9 +130,9 @@ public class Message {
     }
 
     public static enum Menu {
-        WELCOME("------------BIENVENIDO AL SISTEMA DE FACTURACION------------"),
-        MAIN_OPTIONS("1: Administrador\n2: Cliente\n0: Salir"),
-        ADMIN_OPTIONS("1: Cliente\n2: Producto\n3: Servicio\n0: Salir"),
+        WELCOME("************BIENVENIDO AL SISTEMA DE FACTURACION************"),
+        MAIN_OPTIONS("\n********************\nOpciones del sistema\n1: Administrador\n2: Cliente\n0: Salir\n********************"),
+        ADMIN_OPTIONS("\n**************************\nOpciones de administracion\n1: Cliente\n2: Producto\n3: Servicio\n0: Salir\n**************************"),
         ADMIN_CUSTOMER_OPTIONS(
                 "1: Ingresar cliente\n2: Modificar cliente\n3: Eliminar cliente\n4: Revisar clientes\n0: Salir"),
         ADMIN_CUSTOMER_UPDATE_OPTIONS(
@@ -121,8 +145,7 @@ public class Message {
                 "1: Ingresar servicio\n2: Modificar servicio\n3: Eliminar servicio\n4: Revisar servicios\n0: Salir"),
         ADMIN_SERVICE_UPDATE_OPTIONS(
                 "1: Id\n2: Nombre\n3: Precio\n4: Iva\n0: Salir"),
-        CUSTOMER_OPTIONS("1: Producto\n2: Servicio\n3: Facturacion\n0: Salir"),
-        ;
+        CUSTOMER_OPTIONS("1: Producto\n2: Servicio\n3: Facturacion\n0: Salir"),;
 
         private String ms;
 

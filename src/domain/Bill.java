@@ -9,12 +9,16 @@ public class Bill {
     private FacturationSystemManager sm;
     private List<Product> products;
     private List<Service> services;
+    private double subtotal;
+    private double total;
 
     public Bill(Customer customer, FacturationSystemManager sm) {
         this.sm = sm;
         this.customer = customer;
         this.products = new LinkedList<>();
         this.services = new LinkedList<>();
+        this.subtotal = 0;
+        this.total = 0;
     }
 
     public Customer getCustomer() {
@@ -48,4 +52,22 @@ public class Bill {
     public void setServices(List<Service> services) {
         this.services = services;
     }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
+    
 }
